@@ -1,0 +1,455 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #111;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(20, 30, 20, 0.55),
+            rgba(20, 30, 20, 0.55)
+        ),
+        #477545;
+}
+
+.startBox {
+    width: 600px;
+    max-width: 90%;
+    padding: 50px;
+
+    text-align: center;
+
+    background: rgba(10, 15, 10, 0.9);
+    border: 3px solid #d5b94c;
+
+    box-shadow: 0 0 40px rgba(0,0,0,0.7);
+}
+
+.logo {
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    color: white;
+
+    margin-bottom: 35px;
+}
+
+.mission {
+    color: #f1d765;
+    font-size: 21px;
+    line-height: 1.7;
+    font-weight: bold;
+
+    margin-bottom: 35px;
+}
+
+#startButton {
+    padding: 18px 50px;
+
+    background: #d3b63f;
+    color: #111;
+
+    font-size: 20px;
+}
+
+#startButton:hover {
+    background: #f0d35d;
+}
+
+.controls {
+    margin-top: 30px;
+
+    color: #aaa;
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+#game {
+    display: none;
+    position: fixed;
+    inset: 0;
+}
+
+#gameCanvas {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: block;
+
+    background: #69a85d;
+
+    image-rendering: pixelated;
+}
+
+#hud {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    z-index: 20;
+
+    display: flex;
+    gap: 20px;
+
+    padding: 12px 18px;
+
+    background: rgba(0,0,0,0.75);
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#objective {
+    position: fixed;
+    top: 75px;
+    left: 20px;
+
+    z-index: 20;
+
+    padding: 10px 15px;
+
+    background: rgba(0,0,0,0.7);
+    color: #f3d65c;
+
+    font-weight: bold;
+}
+
+#interaction {
+    display: none;
+
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 30;
+
+    padding: 15px 25px;
+
+    background: rgba(0,0,0,0.85);
+    color: white;
+
+    border: 2px solid #e1c44f;
+
+    font-weight: bold;
+}
+
+#watermark {
+    position: fixed;
+    right: 20px;
+    bottom: 15px;
+
+    z-index: 50;
+
+    color: rgba(255,255,255,0.5);
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* HOUSE */
+
+#houseInterior {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.75);
+}
+
+.interiorBox {
+    width: 850px;
+    max-width: 90%;
+    padding: 25px;
+
+    background: #191919;
+
+    border: 3px solid #c8aa48;
+
+    text-align: center;
+}
+
+#interiorNumber {
+    color: #e3c44e;
+    font-size: 24px;
+    font-weight: bold;
+
+    margin-bottom: 15px;
+}
+
+.room {
+    position: relative;
+
+    width: 100%;
+    height: 420px;
+
+    overflow: hidden;
+
+    background: #8b735c;
+
+    border: 5px solid #392d24;
+}
+
+.wall {
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #8d765d 0px,
+            #8d765d 35px,
+            #80694f 36px,
+            #80694f 38px
+        );
+}
+
+.window {
+    position: absolute;
+    top: 50px;
+    left: 80px;
+
+    width: 150px;
+    height: 110px;
+
+    background: #456a7b;
+    border: 12px solid #513d2c;
+}
+
+.window div {
+    position: absolute;
+    background: #513d2c;
+}
+
+.window div:first-child {
+    width: 8px;
+    height: 100%;
+    left: 50%;
+}
+
+.window div:last-child {
+    width: 100%;
+    height: 8px;
+    top: 50%;
+}
+
+.table {
+    position: absolute;
+    bottom: 75px;
+    left: 320px;
+
+    width: 260px;
+    height: 30px;
+}
+
+.tableTop {
+    width: 100%;
+    height: 30px;
+
+    background: #513222;
+}
+
+.tableLeg {
+    position: absolute;
+
+    top: 30px;
+    left: 25px;
+
+    width: 25px;
+    height: 100px;
+
+    background: #392419;
+}
+
+.tableLeg.second {
+    left: 210px;
+}
+
+.cabinet {
+    position: absolute;
+
+    right: 70px;
+    bottom: 70px;
+
+    width: 140px;
+    height: 180px;
+
+    background: #513222;
+
+    border: 8px solid #362218;
+}
+
+.cabinet div {
+    height: 50%;
+
+    border-bottom: 5px solid #362218;
+}
+
+.note {
+    position: absolute;
+
+    left: 430px;
+    bottom: 112px;
+
+    width: 40px;
+    height: 35px;
+
+    background: #eee4bb;
+
+    color: #111;
+
+    font-size: 25px;
+    font-weight: bold;
+
+    padding-top: 3px;
+}
+
+.door {
+    position: absolute;
+
+    bottom: 0;
+    left: 20px;
+
+    width: 90px;
+    height: 180px;
+
+    background: #422a1d;
+
+    border: 8px solid #2c1c14;
+}
+
+#interiorText {
+    color: white;
+
+    margin: 18px 0;
+}
+
+#searchHouse,
+#leaveHouse {
+    padding: 12px 22px;
+    margin: 5px;
+
+    background: #d2b54a;
+    color: #111;
+}
+
+#leaveHouse {
+    background: #777;
+    color: white;
+}
+
+/* CLUE */
+
+#cluePanel,
+#bossPanel,
+#endingPanel {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 300;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.8);
+}
+
+.clueBox,
+.bossBox,
+.endingBox {
+    width: 600px;
+    max-width: 90%;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: #171717;
+
+    border: 3px solid #d1b344;
+
+    color: white;
+}
+
+.clueBox h2,
+.bossBox h1,
+.endingBox h1 {
+    color: #e2c24d;
+    margin-bottom: 25px;
+}
+
+.clueBox p,
+.bossBox p,
+.endingBox p {
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.clueBox button,
+.bossBox button,
+.endingBox button {
+    padding: 13px 30px;
+
+    background: #d2b54a;
+    color: #111;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .logo {
+        font-size: 42px;
+    }
+
+    .hud {
+        flex-wrap: wrap;
+    }
+
+    #hud {
+        gap: 8px;
+        font-size: 11px;
+    }
+
+    .room {
+        height: 320px;
+    }
+}

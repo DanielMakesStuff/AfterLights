@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AFTERLIGHT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="startScreen">
+    <div class="startBox">
+        <div class="logo">AFTERLIGHT</div>
+
+        <div class="mission">
+            ELI'S BROTHER WAS TAKEN BY THE MAFIA.<br>
+            RETURN HIM BACK.
+        </div>
+
+        <button id="startButton">START GAME</button>
+
+        <div class="controls">
+            WASD — MOVE<br>
+            E — ENTER HOUSE<br>
+            LEFT CLICK — SHOOT<br>
+            R — REFILL AMMO
+        </div>
+    </div>
+</div>
+
+<div id="game">
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="hud">
+        <div>HEALTH: <span id="health">100</span></div>
+        <div>AMMO: <span id="ammo">30</span></div>
+        <div>COINS: <span id="coins">0</span></div>
+        <div>CLUES: <span id="clues">0/30</span></div>
+    </div>
+
+    <div id="objective">
+        SEARCH THE HOUSES FOR CLUES.
+    </div>
+
+    <div id="interaction">
+        E — ENTER HOUSE
+    </div>
+
+    <div id="houseInterior">
+
+        <div class="interiorBox">
+
+            <div id="interiorNumber">HOUSE #1</div>
+
+            <div class="room">
+
+                <div class="wall"></div>
+
+                <div class="window">
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <div class="table">
+                    <div class="tableTop"></div>
+                    <div class="tableLeg"></div>
+                    <div class="tableLeg second"></div>
+                </div>
+
+                <div class="cabinet">
+                    <div></div>
+                    <div></div>
+                </div>
+
+                <div class="note">?</div>
+
+                <div class="door"></div>
+
+            </div>
+
+            <p id="interiorText">
+                Search the house for clues.
+            </p>
+
+            <button id="searchHouse">SEARCH HOUSE</button>
+            <button id="leaveHouse">LEAVE HOUSE</button>
+
+        </div>
+
+    </div>
+
+    <div id="cluePanel">
+
+        <div class="clueBox">
+            <h2 id="clueTitle">CLUE</h2>
+            <p id="clueText"></p>
+            <button id="closeClue">CONTINUE</button>
+        </div>
+
+    </div>
+
+    <div id="bossPanel">
+
+        <div class="bossBox">
+            <h1>MAFIA FACTORY</h1>
+            <p>
+                The final clue leads here.
+                Your brother is somewhere inside.
+            </p>
+
+            <button id="enterBossFight">
+                ENTER FACTORY
+            </button>
+        </div>
+
+    </div>
+
+    <div id="endingPanel">
+
+        <div class="endingBox">
+            <h1 id="endingTitle">THE END</h1>
+
+            <p id="endingText"></p>
+
+            <button id="restartButton">
+                PLAY AGAIN
+            </button>
+        </div>
+
+    </div>
+
+    <div id="watermark">
+        DG PRODUCTION
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
